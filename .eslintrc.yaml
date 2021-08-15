@@ -1,0 +1,56 @@
+ ##
+ #Author: Qvanjian
+ #Date: 2021-08-14 19:30:59
+ #LastEditTime: 2021-08-15 16:32:48
+ #LastEditors: Qvanjian
+ #Description: Config for ESlint
+ #FilePath: \vue3-webpack-template\.eslintrc.yaml
+ ##
+{
+  # set the accessable global variables
+  "env": { "browser": true, "node": true, "es6": true, "commonjs": true },
+  # Use the ESlint/vue3 recommanded rules, use prittier-plugin to solve the those formatter conflicts with pritter
+  # addition : the Vue rules conflicted with prittier can only be disabled via pritter-plugin or overrides
+  #
+  "extends": ["eslint:recommended", "plugin:vue/vue3-recommended", "prettier"],
+  "parser": "vue-eslint-parser",
+  # 配置解析器选项
+  "parserOptions": { "sourceType": "module", "parser": {
+          "js": "espree", # Script parser for `<script>`
+          # "ts": "@typescript-eslint/parser",  Script parser for `<script lang="ts">`
+          "<template>": "espree", # If not specified, the parser determined by `<script lang ="...">` is used.
+        }, "ecmaFeatures": { "impliedStrict": true }, "vueFeatures": {
+          "filter": false, # whether to parse the Vue2 filter, false to only vue3
+          "interpolationAsNonHTML": true, # for vue3 use true please
+          "styleCSSVariableInjection": true, # for the vue sytanx insert into the scss code
+        } },
+  # additional rules for ESlint and all plugins
+  "rules": {
+      "@babel/new-cap": "error",
+      "@babel/no-invalid-this": "error",
+      "@babel/no-unused-expressions": "error",
+      # disabled by pritter-plugin, enable here if necessary
+      # "@babel/object-curly-spacing": "warn",
+      "@babel/semi": "warn",
+      "vue/script-setup-uses-vars": "error",
+      "no-unused-vars": "warn",
+    },
+  # plugins
+  "plugins": ["@babel", "vue"],
+  # forbid some magic error in vue files
+  "overrides":
+    [
+      {
+        "files": ["*.vue"],
+        "rules":
+          {
+            "eol-last": "off",
+            "linebreak-style": "off",
+            "max-len": "off",
+            "max-lines": "off",
+            "no-trailing-spaces": "off",
+            "unicode-bom": "off",
+          },
+      },
+    ],
+}

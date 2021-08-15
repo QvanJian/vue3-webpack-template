@@ -1,0 +1,28 @@
+/*
+ * @Author: Qvanjian
+ * @Date: 2021-08-14 14:49:02
+ * @LastEditTime: 2021-08-15 19:20:13
+ * @LastEditors: Qvanjian
+ * @Description: Babel configuration files
+ * @FilePath: \vue3-webpack-template\.babelrc.json
+ */
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        // for @bable/pollify has been deprecated, it's NOT prefered
+        // To emulate a full ES2015+ environment,
+        // Then import core-js  and regenerator runtime first in our entry file
+        // core-js: to polyfill ECMAScript features
+        //     import "core-js";
+        // regenerator runtime: needed only if you are transpiling generators
+        //     import "regenerator-runtime/runtime";
+        // if set usage nothin is needed to add 
+        "useBuiltIns": "usage", 
+        "bugfixes": true,
+        "corejs": "3"
+      }
+    ]
+  ]
+}
