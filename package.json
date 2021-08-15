@@ -24,7 +24,7 @@
     "type": "git",
     "url": "https://github.com/QvanJian/vue3-webpack-template.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/eslint-parser": "^7.15.0",
