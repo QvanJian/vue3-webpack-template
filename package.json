@@ -19,7 +19,7 @@
     "scss"
   ],
   "author": "Qvanjian",
-  "email" : "zqaptx@163.com",
+  "email": "zqaptx@163.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/QvanJian/vue3-webpack-template.git"
