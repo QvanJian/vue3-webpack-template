@@ -1,7 +1,7 @@
 /*
  * @Author: Qvanjian
  * @Date: 2021-08-14 17:24:55
- * @LastEditTime: 2021-08-15 18:53:05
+ * @LastEditTime: 2021-08-15 20:12:42
  * @LastEditors: Qvanjian
  * @Description: webpack config for development
  * @FilePath: \vue3-webpack-template\webpack.config.dev.js
