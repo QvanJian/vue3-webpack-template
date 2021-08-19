@@ -1,7 +1,7 @@
 /*
  * @Author: Qvanjian
  * @Date: 2021-08-14 11:53:46
- * @LastEditTime: 2021-08-16 11:58:38
+ * @LastEditTime: 2021-08-19 13:16:31
  * @LastEditors: Qvanjian
  * @Description: Basic webpack config for both development and production
  * @FilePath: \vue3-webpack-template\webpack.config.js
@@ -22,29 +22,23 @@ module.exports = {
     rules: [
       {
         test: /\.(gif|jpg|jpeg|png|ico|svg)$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 40000,
-              name: "[name].[hash:8].[ext]",
-              outputPath: resolve(__dirname, "dist/pics"),
-            },
-          },
-        ],
+        type: "asset/resource",
+        generator: {
+          filename: "images/[name].[hash:8].[ext]",
+        },
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        use: {
-          loader: "file-loader",
+        type: "asset/resource",
+        generator: {
+          filename: "font/[name].[hash:8].[ext]",
         },
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 40000,
-          name: "media/[name].[hash:7].[ext]",
+        type: "asset/resource",
+        generator: {
+          filename: "media/[name].[hash:8].[ext]",
         },
       },
       {
@@ -61,6 +55,7 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
+      title:"Vue 3 with webpack 5 template",
       template: "./src/index.html",
       filename: "index.html",
     }),
