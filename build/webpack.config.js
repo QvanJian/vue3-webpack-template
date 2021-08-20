@@ -1,7 +1,7 @@
 /*
  * @Author: Qvanjian
  * @Date: 2021-08-14 11:53:46
- * @LastEditTime: 2021-08-19 16:49:51
+ * @LastEditTime: 2021-08-20 10:51:16
  * @LastEditors: Qvanjian
  * @Description: Basic webpack config for both development and production
  * @FilePath: \vue3-webpack-template\build\webpack.config.js
@@ -18,15 +18,17 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const util = require("./utils");
 
 const devServerOptions = {
-  port: 9528,
-  host: util.myHost(),
-  index: "index.html",
-  compress: true,
   hot: true,
+  port: 9528,
+  compress: true,
   open: true,
-  overlay: {
-    warnings: true,
-    errors: true,
+  client: {
+    overlay: {
+      errors: true,
+      warnings: true,
+    },
+    logging: "warn",
+    progress: true,
   },
   historyApiFallback: true, // auto to publicPath/index.html when 404 returned
 
@@ -93,7 +95,11 @@ module.exports = (env) => {
           ],
         },
         {
-          test: /\.(gif|jpg|jpeg|png|ico|svg)$/,
+          test: /\.svg$/,
+          use: ["svg-sprite-loader", "svgo-loader"],
+        },
+        {
+          test: /\.(gif|jpg|jpeg|png|ico)$/,
           type: "asset/resource",
           generator: {
             filename: devMode
@@ -135,6 +141,7 @@ module.exports = (env) => {
         title: "Vue 3 with webpack 5 template",
         template: "./src/index.html",
         filename: "index.html",
+        favicon: resolve(__dirname, "../src/assets/favicon.ico"),
       }),
       new CleanWebpackPlugin(),
       new webpack.DefinePlugin({
